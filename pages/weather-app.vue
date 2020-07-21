@@ -8,10 +8,13 @@
           </v-card>
       </v-col>
     <v-col cols="12" class="mt-4">
-          <v-text-field
+        <v-form @submit.prevent="getWeatherInfo">
+            <v-text-field v-model="city"
             label="Enter city here....."
             solo
           ></v-text-field>
+        </v-form>
+          
         </v-col>
 
   </v-container>
@@ -22,15 +25,22 @@ export default {
 
     data(){
         return{
-            city: "london"
+            city: "london",
+            weather: {}
         }
     },
 
     created(){
-        this.$axios.$get(
+       this.getWeatherInfo()
+    },
+
+    methods:{
+        getWeatherInfo(){
+             this.$axios.$get(
             `https://api.openweathermap.org/data/2.5/weather?q=${this.city
             }&appid=3da2c310fe5e76482c133afd055b3930`
-        ).then(res => console.log(res))
+        ).then(res => (this.weather = res))
+        }
     }
 }
 </script>
