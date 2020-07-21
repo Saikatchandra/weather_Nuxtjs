@@ -16,13 +16,10 @@
                       </p>
                   </v-col>
                    <v-col class="text-center">
-                      <h4>Temperature</h4>
-                      <h2> {{weather.name}} </h2>
-                      <img :src="icon" alt="weather_icon">
-                      <p>
-                          <span> {{ temp() }} &deg;C  </span>
-                          <span class="caption ml-4"> {{weather.weather[0].description}} </span>
-                      </p>
+                      <h4>Wind & Pressure</h4>
+                      <h3 class="headline"> Wind: {{weather.wind.speed}} m/s ({{weather.wind.deg}}) &deg;C   </h3>
+                      <h3 class="headline mt-2"> Humidity: {{weather.main.humidity}}%   </h3>
+                     <h3 class="headline mt-2"> Pressure: {{weather.main.pressure}}  hpa   </h3>
                   </v-col>
                    <v-col class="text-center">
                       <h4>Temperature</h4>
