@@ -1,0 +1,39 @@
+<template>
+    
+ <v-container>
+     <h2 class="text-center">Weather app</h2>
+      <v-col cols="12">
+          <v-card color="blue-grey darken-2" dark>
+              <v-card-text>here you go</v-card-text>
+          </v-card>
+      </v-col>
+    <v-col cols="12" class="mt-4">
+          <v-text-field
+            label="Enter city here....."
+            solo
+          ></v-text-field>
+        </v-col>
+
+  </v-container>
+
+</template>    
+<script>
+export default {
+
+    data(){
+        return{
+            city: "london"
+        }
+    },
+
+    created(){
+        this.$axios.$get(
+            `https://api.openweathermap.org/data/2.5/weather?q=${this.city
+            }&appid=3da2c310fe5e76482c133afd055b3930`
+        ).then(res => console.log(res))
+    }
+}
+</script>
+<style scoped>
+
+</style>
