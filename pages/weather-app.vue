@@ -5,16 +5,36 @@
       <v-col cols="12">
           <v-card color="blue-grey darken-2" dark>
               <v-card-text>
-                  <v-layout justify-center>
+                  <v-layout v-if="weather.weather" justify-center>
                   <v-col class="text-center">
                       <h4>Temperature</h4>
                       <h2> {{weather.name}} </h2>
                       <img :src="icon" alt="weather_icon">
                       <p>
                           <span> {{ temp() }} &deg;C  </span>
+                          <span class="caption ml-4"> {{weather.weather[0].description}} </span>
+                      </p>
+                  </v-col>
+                   <v-col class="text-center">
+                      <h4>Temperature</h4>
+                      <h2> {{weather.name}} </h2>
+                      <img :src="icon" alt="weather_icon">
+                      <p>
+                          <span> {{ temp() }} &deg;C  </span>
+                          <span class="caption ml-4"> {{weather.weather[0].description}} </span>
+                      </p>
+                  </v-col>
+                   <v-col class="text-center">
+                      <h4>Temperature</h4>
+                      <h2> {{weather.name}} </h2>
+                      <img :src="icon" alt="weather_icon">
+                      <p>
+                          <span> {{ temp() }} &deg;C  </span>
+                          <span class="caption ml-4"> {{weather.weather[0].description}} </span>
                       </p>
                   </v-col>
                   </v-layout>
+                  
               </v-card-text>
           </v-card>
       </v-col>
