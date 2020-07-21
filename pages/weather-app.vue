@@ -4,7 +4,15 @@
      <h2 class="text-center">Weather app</h2>
       <v-col cols="12">
           <v-card color="blue-grey darken-2" dark>
-              <v-card-text>here you go</v-card-text>
+              <v-card-text>
+                  <v-layout justify-center>
+                  <v-col class="text-center">
+                      <h4>Temperature</h4>
+                      <h2> {{weather.name}} </h2>
+                      <img :src="icon" alt="weather_icon">
+                  </v-col>
+                  </v-layout>
+              </v-card-text>
           </v-card>
       </v-col>
     <v-col cols="12" class="mt-4">
@@ -26,12 +34,19 @@ export default {
     data(){
         return{
             city: "london",
-            weather: {}
+            weather: {},
         }
     },
 
     created(){
        this.getWeatherInfo()
+    },
+    computed:{
+        icon(){
+            return this.weather.weather 
+            ? `https://openweathermap.org/img/w/${this.weather.weather[0].icon}.png`
+            : ''
+        }
     },
 
     methods:{
