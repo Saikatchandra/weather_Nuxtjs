@@ -5,7 +5,7 @@
       <v-col cols="12">
           <v-card color="blue-grey darken-2" dark>
               <v-card-text>
-                  <v-layout v-if="weather.weather" justify-center>
+                  <v-layout justify-center>
                   <v-col class="text-center">
                       <h4>Temperature</h4>
                       <h2> {{weather.name}} </h2>
@@ -22,13 +22,9 @@
                      <h3 class="headline mt-2"> Pressure: {{weather.main.pressure}}  hpa   </h3>
                   </v-col>
                    <v-col class="text-center">
-                      <h4>Temperature</h4>
-                      <h2> {{weather.name}} </h2>
-                      <img :src="icon" alt="weather_icon">
-                      <p>
-                          <span> {{ temp() }} &deg;C  </span>
-                          <span class="caption ml-4"> {{weather.weather[0].description}} </span>
-                      </p>
+                      <h4>Other</h4>
+                      <h3 class="headline mt-2"> Max Temp: {{Math.round(weather.main.temp_max -273)}} &deg;C    </h3>
+                      <h3 class="headline mt-2"> Min Temp: {{Math.round(weather.main.temp_min -273)}} &deg;C    </h3>
                   </v-col>
                   </v-layout>
                   
@@ -55,6 +51,7 @@ export default {
         return{
             city: "",
             // weather: {},
+
         }
     },
 
@@ -64,7 +61,7 @@ export default {
   
 //This is for server side rendering (SSR)
     asyncData ({ params,$axios }) {
-    return $axios.$get(`https://api.openweathermap.org/data/2.5/weather?q=london&appid=3da2c310fe5e76482c133afd055b3930`)
+    return $axios.$get(`https://api.openweathermap.org/data/2.5/weather?q=london&appid=${process.env.weatherAppId}`)
       .then((res) => {
         return { weather: res }
       })
@@ -82,12 +79,12 @@ export default {
         getWeatherInfo(){
              this.$axios.$get(
             `https://api.openweathermap.org/data/2.5/weather?q=${this.city
-            }&appid=3da2c310fe5e76482c133afd055b3930`
+            }&appid=${process.env.weatherAppId}`
         ).then(res => (this.weather = res))
         },
         
         temp(){
-            return this.weather.main ? Math.round(this.weather.main.temp - 273) : ''
+            return Math.round(this.weather.main.temp - 273)
         }
     }
 }
