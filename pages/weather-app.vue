@@ -56,14 +56,23 @@ export default {
 
     data(){
         return{
-            city: "london",
-            weather: {},
+            city: "",
+            // weather: {},
         }
     },
 
     created(){
        this.getWeatherInfo()
     },
+  
+//This is for server side rendering (SSR)
+    asyncData ({ params,$axios }) {
+    return $axios.$get(`https://api.openweathermap.org/data/2.5/weather?q=london&appid=3da2c310fe5e76482c133afd055b3930`)
+      .then((res) => {
+        return { weather: res }
+      })
+  },
+
     computed:{
         icon(){
             return this.weather.weather 

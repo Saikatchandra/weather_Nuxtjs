@@ -4,7 +4,9 @@
      <v-main>
        <v-toolbar color="indigo" dark>
          <!-- <v-toolbar-side-icon></v-toolbar-side-icon> -->
-          <v-toolbar-title> Nuxt Project</v-toolbar-title>
+          <v-toolbar-title> 
+            <n-link to="/">Nuxt Project</n-link>
+            </v-toolbar-title>
            <v-spacer></v-spacer>
            <v-toolbar-items class="hidden-sm-and-down">
              <v-btn>
